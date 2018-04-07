@@ -12,13 +12,8 @@ stdenv.mkDerivation rec {
 
   buildInputs = [ aspell boost expat expect intltool libxml libxslt pcre xercesc wxwidgets ];
 
-  CFLAGS="-I${pkgs.libxml2.dev}/include/libxml2/libxml";
-  CPPFLAGS="-I${pkgs.libxml2.dev}/include/libxml2/libxml";
-
-  preConfigure = ''
-    export CFLAGS="-I${pkgs.libxml2.dev}/include/libxml2/libxml"
-    export CPPFLAGS="-I${pkgs.libxml2.dev}/include/libxml2/libxml"
-  '';
+  C_INCLUDE_PATH = "${pkgs.libxml2.dev}/include/libxml2";
+  CPLUS_INCLUDE_PATH = "${pkgs.libxml2.dev}/include/libxml2";
 
   meta = {
     description = "A fast, free, validating XML editor";
